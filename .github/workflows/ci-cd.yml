@@ -20,12 +20,12 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r ./weather-api/requirements.txt
 
     - name: Run lint checks
       run: |
         pip install flake8
-        flake8 .
+        flake8 ./weather-api
 
     - name: Log in to DockerHub
       uses: docker/login-action@v2
@@ -35,5 +35,18 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t abubakr1998/weather-app:latest .
+        docker build -t abubakr1998/weather-app:latest ./weather-api
         docker push abubakr1998/weather-app:latest
+
+    # Uncomment and configure if deploying to OpenShift/Kubernetes
+    # - name: Deploy to OpenShift
+    #   uses: redhat-actions/oc-login@v2
+    #   with:
+    #     openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+    #     openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+    #     namespace: weather-demo
+
+    # - name: Apply Deployment
+    #   run: |
+    #     oc apply -f k8s/deployment.yaml
+    #     oc apply -f k8s/service.yaml
