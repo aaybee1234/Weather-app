@@ -1,6 +1,10 @@
 # Use official Python image
 FROM python:3.9-slim
 
+# Accept AccuWeather key as build argument
+ARG ACCU_API_KEY
+ENV ACCU_API_KEY=$ACCU_API_KEY
+
 # Set working directory
 WORKDIR /app
 
