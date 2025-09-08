@@ -37,11 +37,8 @@ jobs:
       run: |
         docker build \
           --build-arg ACCU_API_KEY=${{ secrets.ACCU_API_KEY }} \
-          -t abubakr1998/weather-app:latest .
+          -t abubakr1998/weather-app:latest ./weather-api
         docker push abubakr1998/weather-app:latest
-
-
-
 
     # Uncomment and configure if deploying to OpenShift/Kubernetes
     # - name: Deploy to OpenShift

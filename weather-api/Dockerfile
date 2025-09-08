@@ -1,7 +1,7 @@
 # Use official Python image
 FROM python:3.9-slim
 
-# Accept AccuWeather key as build argument
+# Build argument for API key
 ARG ACCU_API_KEY
 ENV ACCU_API_KEY=$ACCU_API_KEY
 
